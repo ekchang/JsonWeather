@@ -2,11 +2,15 @@ package com.ekc.c4q.jsonweather;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import com.ekc.c4q.jsonweather.internal.WeatherHelper;
 import com.ekc.c4q.jsonweather.model.Weather;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+  private WeatherAdapter adapter;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -24,5 +28,10 @@ public class MainActivity extends AppCompatActivity {
      *
      * The icons you should use are under drawable-dpi/ic_*
      */
+    RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    adapter = new WeatherAdapter();
+    recyclerView.setAdapter(adapter);
+    adapter.setWeatherList(weatherList);
   }
 }
